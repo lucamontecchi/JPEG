@@ -85,7 +85,9 @@ int main(int argc, char *argv[]) {
 	int provaB[8][8];
 	for(int i=0; i<8; i++){
 		for(int j=0; j<8; j++){
-			provaR[i][j] = provaG[i][j] = provaB[i][j] = i;
+			provaR[i][j] = rand()%256;
+			provaG[i][j] = rand()%256;
+			provaB[i][j] = rand()%256;
 		}
 	}
 	int tot = 0;

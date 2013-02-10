@@ -377,7 +377,7 @@ void scriviSOS(bitwriter& bit_out){
 }
 //-------------------------------------------------
 void huffmann(int zig_zag[64], bitwriter& bit_out){
-	int DC = zig_zag[0];
+	int DC = zig_zag[0]; //TODO: sottrai col DC precedente
 	int SSSS = log((float)abs(DC))/log(2.0f) + 1; //log in base 2
 	bit_out.write(dc_table[SSSS].code,dc_table[SSSS].length);
 	if(DC>0){
