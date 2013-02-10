@@ -3,6 +3,7 @@
 #include"bitwriter.h"
 #include"ppm.h"
 #include <iostream>
+#include <time.h>
 
 using namespace std;
 int cb[1000][1000];
@@ -79,10 +80,11 @@ int main(int argc, char *argv[]) {
 		cout << endl;
 	}
 	*/
-	//int matprova[8][8] = {{95,91,91,91,84,84,84,84},{109,99,95,91,91,84,84,84},{109,109,99,99,91,91,91,91},{120,120,109,106,99,95,91,91},{131,131,120,109,106,99,95,91},{145,139,131,120,109,106,99,95},{157,145,139,131,120,109,106,99},{169,157,145,131,131,120,109,106}};
+	int matprova[8][8] = {{95,91,91,91,84,84,84,84},{109,99,95,91,91,84,84,84},{109,109,99,99,91,91,91,91},{120,120,109,106,99,95,91,91},{131,131,120,109,106,99,95,91},{145,139,131,120,109,106,99,95},{157,145,139,131,120,109,106,99},{169,157,145,131,131,120,109,106}};
 	int provaR[8][8];
 	int provaG[8][8];
 	int provaB[8][8];
+	srand ( time(NULL) );
 	for(int i=0; i<8; i++){
 		for(int j=0; j<8; j++){
 			provaR[i][j] = rand()%256;
@@ -99,15 +101,19 @@ int main(int argc, char *argv[]) {
 	// dividere in blocchi
 	// metti i 3 colori insieme nel file
 
+	scala(matprova);
 	scala(y); scala(Cb); scala(Cr);
 	
-	float trasfY[8][8],trasfCb[8][8],trasfCr[8][8];
+	float trasfY[8][8],trasfCb[8][8],trasfCr[8][8], trasfProva[8][8];
+	fdct(matprova,trasfProva);
 	fdct(y,trasfY); fdct(Cb,trasfCb); fdct(Cr,trasfCr);
 	
-	int quantY[8][8], quantCb[8][8], quantCr[8][8];
+	int quantY[8][8], quantCb[8][8], quantCr[8][8], quantProva[8][8];
+	quantizza(1,trasfProva,quantProva);
 	quantizza(1,trasfY,quantY); quantizza(1,trasfCb,quantCb); quantizza(1,trasfCr,quantCr);
 	
-	int zigY[64], zigCb[64], zigCr[64];
+	int zigY[64], zigCb[64], zigCr[64], zigProva[64];
+	zig_zag(quantProva,zigProva);
 	zig_zag(quantY,zigY); zig_zag(quantCb,zigCb); zig_zag(quantCr,zigCr);
 	
 	bitwriter bit_out("out.jpg");
