@@ -126,6 +126,6 @@ int main(int argc, char *argv[]) {
 	huffmann(zigCr,bit_out);
 
 	scriviEOI(bit_out);
-
+	//getchar();
 	return 0;
 }
