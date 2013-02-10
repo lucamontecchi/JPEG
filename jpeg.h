@@ -224,10 +224,12 @@ void inizializza(){
 	dc_table[11].length=9;			dc_table[11].code=510;
 }
 //--------------------------------------------------------------------------
-void RGBtoYCbCr(int block[8][8],int ycbcr[8][8]){
+void RGBtoYCbCr(int r[8][8], int g[8][8], int b[8][8], int y[8][8], int Cb[8][8], int Cr[8][8]){
 	for(int i=0; i<8; ++i){
 		for(int j=0; j<8; ++j){
-
+			y[i][j] = 0.299*r[i][j] + 0.587*g[i][j] + 0.114*b[i][j];
+			Cb[i][j] = -0.1687*r[i][j] - 0.3313*g[i][j] + 0.5*b[i][j] + 128;
+			Cr[i][j] = 0.5*r[i][j] - 0.4187*g[i][j] -0.0813*b[i][j] + 128;
 		}
 	}
 }
@@ -302,7 +304,7 @@ void zig_zag(int Quantizzata[8][8],int zig_zag[64]){
 
 	for(byte i=0;i<64;i++)
 		cout << zig_zag[i] << " ";
-	cout << endl;
+	cout << endl << endl;
 }
 //-------------------------------------------------
 void scriviQT(bitwriter& bit_out){
@@ -326,9 +328,9 @@ void scriviHT(bitwriter& bit_out){
 	bit_out.write(8,16);
 	
 	bit_out.write(3,8); //NOC: 3 = a colori
-	bit_out.write(74240,24); // info su Y
-	bit_out.write(135425,24); // info su Cb
-	bit_out.write(200961,24); // info su Cr
+	bit_out.write(74240,24); // info su Y (01 22 00) 22 = no sottocampionamento
+	bit_out.write(139777,24); // info su Cb (02 22 01, ma andrà cambiato in 02 11 01) 11 indica sottocampionamento 2x2
+	bit_out.write(205313,24); // info su Cr (03 22 01, ma andrà cambiato in 03 11 01)
 
 	// Tabella di Huffmann DC
 	bit_out.write(DHT,16);
@@ -367,10 +369,11 @@ void scriviSOS(bitwriter& bit_out){
 	bit_out.write(12,16); // lunghezza
 
 	bit_out.write(3,8); // Number Of Components
-	bit_out.write(1,8);
+	bit_out.write(1,8);	// componente n°1
 	bit_out.write(0,8); // id tabelle DC e AC
-	bit_out.write(34669329,32);
-	bit_out.write(0,8);
+	bit_out.write(33555200,32); // componenti 2 e 3 e rispettivi id tabelle DC e AC
+	bit_out.write(63,16); // Spectral selection
+	bit_out.write(0,8); // Successive approximation
 }
 //-------------------------------------------------
 void huffmann(int zig_zag[64], bitwriter& bit_out){

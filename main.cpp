@@ -31,7 +31,7 @@ int main(int argc, char *argv[]) {
 	}
 	
 	WriteBitmap ("copia.bmp",img);*/
-	int alt = img.height();
+	/*int alt = img.height();
 	int larg = img.width();
 	img.rgb_ycbcr(3);
 	img.sottocampionare(cb,cr,2);
@@ -78,31 +78,44 @@ int main(int argc, char *argv[]) {
 		}
 		cout << endl;
 	}
-
-	int matprova[8][8] = {{95,91,91,91,84,84,84,84},{109,99,95,91,91,84,84,84},{109,109,99,99,91,91,91,91},{120,120,109,106,99,95,91,91},{131,131,120,109,106,99,95,91},{145,139,131,120,109,106,99,95},{157,145,139,131,120,109,106,99},{169,157,145,131,131,120,109,106}};
+	*/
+	//int matprova[8][8] = {{95,91,91,91,84,84,84,84},{109,99,95,91,91,84,84,84},{109,109,99,99,91,91,91,91},{120,120,109,106,99,95,91,91},{131,131,120,109,106,99,95,91},{145,139,131,120,109,106,99,95},{157,145,139,131,120,109,106,99},{169,157,145,131,131,120,109,106}};
+	int provaR[8][8];
+	int provaG[8][8];
+	int provaB[8][8];
+	for(int i=0; i<8; i++){
+		for(int j=0; j<8; j++){
+			provaR[i][j] = provaG[i][j] = provaB[i][j] = i;
+		}
+	}
 	int tot = 0;
-	int ycbcr[8][8];
+	int y[8][8];
+	int Cb[8][8];
+	int Cr[8][8];
 
-	//RGBtoYCbCr(matprova,ycbcr);
+	RGBtoYCbCr(provaR,provaG,provaB,y,Cb,Cr);
 	// dividere in blocchi
 	// metti i 3 colori insieme nel file
 
-	scala(matprova);
+	scala(y); scala(Cb); scala(Cr);
 	
-	float trasf[8][8];
-	fdct(matprova,trasf);
+	float trasfY[8][8],trasfCb[8][8],trasfCr[8][8];
+	fdct(y,trasfY); fdct(Cb,trasfCb); fdct(Cr,trasfCr);
 	
-	quantizza(1,trasf,matprova);
+	int quantY[8][8], quantCb[8][8], quantCr[8][8];
+	quantizza(1,trasfY,quantY); quantizza(1,trasfCb,quantCb); quantizza(1,trasfCr,quantCr);
 	
-	int zig[64];
-	zig_zag(matprova,zig);
+	int zigY[64], zigCb[64], zigCr[64];
+	zig_zag(quantY,zigY); zig_zag(quantCb,zigCb); zig_zag(quantCr,zigCr);
 	
 	bitwriter bit_out("out.jpg");
 	scriviHeaders(bit_out);
 	scriviQT(bit_out);
 	scriviHT(bit_out);
 	scriviSOS(bit_out);
-	huffmann(zig,bit_out);
+	huffmann(zigY,bit_out);
+	huffmann(zigCb,bit_out);
+	huffmann(zigCr,bit_out);
 
 	scriviEOI(bit_out);
 
