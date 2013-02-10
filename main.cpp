@@ -10,7 +10,7 @@ int cb[1000][1000];
 int cr[1000][1000];
 
 int main(int argc, char *argv[]) {
- //oidocrop
+ 
 	inizializza();
 	
 	image<unsigned long> img;
