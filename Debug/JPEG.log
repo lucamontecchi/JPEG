@@ -1,30 +1,12 @@
-﻿Compilazione avviata 2013-02-09 06:14:51 PM.
+﻿Compilazione avviata 2013-02-10 02:07:56 PM.
      1>Progetto "C:\Users\Vez\Desktop\JPEG\JPEG.vcxproj" sul nodo 2 (destinazioni: Build).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
          main.cpp
      1>c:\users\vez\desktop\jpeg\jpeg.h(1): warning C4067: token imprevisti dopo una direttiva per il preprocessore. Previsto un carattere di nuova riga
-     1>c:\users\vez\desktop\jpeg\bitwriter.h(287): warning C4244: '=': conversione da 'unsigned short' a 'byte'. Possibile perdita di dati.
-     1>c:\users\vez\desktop\jpeg\bitwriter.h(300): warning C4333: '>>': shift a destra di una misura eccessiva. Perdita di dati
-     1>c:\users\vez\desktop\jpeg\bitwriter.h(313): warning C4333: '>>': shift a destra di una misura eccessiva. Perdita di dati
-     1>c:\users\vez\desktop\jpeg\jpeg.h(32): warning C4305: 'inizializzazione': troncamento da 'double' a 'float'
-     1>c:\users\vez\desktop\jpeg\jpeg.h(230): warning C4244: '=': conversione da 'double' a 'int'. Possibile perdita di dati.
-     1>c:\users\vez\desktop\jpeg\jpeg.h(231): warning C4244: '=': conversione da 'double' a 'int'. Possibile perdita di dati.
-     1>c:\users\vez\desktop\jpeg\jpeg.h(232): warning C4244: '=': conversione da 'double' a 'int'. Possibile perdita di dati.
-     1>c:\users\vez\desktop\jpeg\jpeg.h(262): warning C4244: '=': conversione da 'float' a 'unsigned int'. Possibile perdita di dati.
-     1>c:\users\vez\desktop\jpeg\jpeg.h(278): warning C4244: '+=': conversione da 'double' a 'float'. Possibile perdita di dati.
-     1>c:\users\vez\desktop\jpeg\jpeg.h(381): warning C4244: 'inizializzazione': conversione da 'float' a 'int'. Possibile perdita di dati.
-     1>c:\users\vez\desktop\jpeg\jpeg.h(404): warning C4244: 'inizializzazione': conversione da 'float' a 'int'. Possibile perdita di dati.
-     1>c:\users\vez\desktop\jpeg\bitreader.h(69): warning C4554: '<<': controllare eventuali errori di precedenza tra gli operatori. Per maggiore chiarezza, utilizzare le parentesi.
-     1>c:\users\vez\desktop\jpeg\bitreader.h(222): warning C4554: '<<': controllare eventuali errori di precedenza tra gli operatori. Per maggiore chiarezza, utilizzare le parentesi.
-     1>c:\users\vez\desktop\jpeg\ppm.h(189): warning C4101: 'buf': variabile locale senza riferimenti
-     1>c:\users\vez\desktop\jpeg\ppm.h(228): warning C4018: '<': errata corrispondenza tra signed e unsigned
-     1>c:\users\vez\desktop\jpeg\ppm.h(229): warning C4018: '<': errata corrispondenza tra signed e unsigned
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Vez\Desktop\JPEG\Debug\JPEG.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Vez\Desktop\JPEG\Debug\JPEG.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Vez\Desktop\JPEG\Debug\JPEG.lib" /MACHINE:X86 Debug\main.obj
-         JPEG.vcxproj -> C:\Users\Vez\Desktop\JPEG\Debug\JPEG.exe
-     1>Compilazione progetto "C:\Users\Vez\Desktop\JPEG\JPEG.vcxproj" (destinazioni: Build) completata.
+     1>c:\users\vez\desktop\jpeg\jpeg.h(1): fatal error C1083: Impossibile aprire il file inclusione 'bitwriter.h': No such file or directory
+     1>Compilazione progetto "C:\Users\Vez\Desktop\JPEG\JPEG.vcxproj" (destinazioni: Build) NON COMPLETATA.
 
-Compilazione completata.
+Compilazione NON RIUSCITA.
 
-Tempo trascorso 00:00:01.11
+Tempo trascorso 00:00:00.51
